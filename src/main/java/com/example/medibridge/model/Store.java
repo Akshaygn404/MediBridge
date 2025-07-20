@@ -1,5 +1,6 @@
 package com.example.medibridge.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Store {
 
     @ManyToOne
     @JoinColumn(name="owner_id")
+    @JsonBackReference
     private Owner owner;
 
     @ManyToMany

@@ -23,4 +23,10 @@ public class AuthCountroller {
 
         return (authService.registerNewUser(name,email,password,phone,role))?"Successfully registered":"User already exist";
     }
+
+
+    @GetMapping("/dummy")
+    public String dummy() {
+        return " Well;smnf";
+    }
 }

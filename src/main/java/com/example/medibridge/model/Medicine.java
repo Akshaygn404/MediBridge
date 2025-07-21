@@ -1,10 +1,13 @@
 package com.example.medibridge.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
 
 @Entity
+@Data
 public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +24,6 @@ public class Medicine {
     private int stockQuantity;
 
     @ManyToMany(mappedBy = "medicines")
+    @JsonIgnore
     private Set<Store> stores;
 }

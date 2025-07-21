@@ -17,6 +17,10 @@ public class StoreService {
     @Autowired
     private AuthService authService;
 
+
+
+
+
     public boolean updateStoreDetails(int storeId, String storeName, String location) {
         Owner currentOwner = authService.getCurrentOwner();
         Store store = storeRepository.findById(storeId).orElse(null);

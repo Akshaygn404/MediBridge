@@ -38,7 +38,7 @@ public class AuthService {
             owner.setEmail(email);
             owner.setPassword(encryptedPassword);
             owner.setPhone(phone);
-            owner.setRole(role);
+            owner.setRole("ROLE_OWNER");
 
             userRepository.save(owner);
         }
@@ -48,7 +48,7 @@ public class AuthService {
             customer.setEmail(email);
             customer.setPassword(encryptedPassword);
             customer.setPhone(phone);
-            customer.setRole(role);
+            customer.setRole("ROLE_CUSTOMER");
             userRepository.save(customer);
         }
         return true;

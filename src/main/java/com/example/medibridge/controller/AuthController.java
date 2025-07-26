@@ -60,7 +60,7 @@ public class AuthController {
 
         // Load user and generate JWT
         final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getEmail());
-        final String token = jwtUtil.generateToken(userDetails.getUsername());
+        final String token = jwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
     }

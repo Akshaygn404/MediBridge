@@ -1,4 +1,4 @@
-package com.example.medibridge.dto.MedicineDTO;
+package com.example.medibridge.dto.MedicineDTO.Owner;
 
 import lombok.Data;
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,4 +27,13 @@ public class Medicine {
     @ManyToMany(mappedBy = "medicines")
     @JsonIgnore
     private Set<Store> stores;
+
+    @ManyToMany
+    @JoinTable(
+            name = "medicine_alternates",
+            joinColumns = @JoinColumn(name = "medicine_id"),
+            inverseJoinColumns = @JoinColumn(name = "alternate_id")
+    )
+    private Set<Medicine> alternates = new HashSet<>();
 }
+

@@ -1,9 +1,9 @@
 package com.example.medibridge.service;
 
 //import com.example.medibridge.controller.AuthCountroller;
-import com.example.medibridge.dto.MedicineDTO.MedicineRequestDTO;
-import com.example.medibridge.dto.MedicineDTO.MedicineResponseDTO;
-import com.example.medibridge.dto.MedicineDTO.MedicineUpdateDTO;
+import com.example.medibridge.dto.MedicineDTO.Owner.MedicineRequestDTO;
+import com.example.medibridge.dto.MedicineDTO.Owner.MedicineResponseDTO;
+import com.example.medibridge.dto.MedicineDTO.Owner.MedicineUpdateDTO;
 import com.example.medibridge.model.Medicine;
 import com.example.medibridge.model.Owner;
 import com.example.medibridge.model.Store;

@@ -13,6 +13,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -28,6 +32,7 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
+
 
 
     @PostMapping("/register")
@@ -50,7 +55,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest jwtRequest) {
         try {
-            // Authenticate user credentials
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword())
             );
@@ -58,14 +62,20 @@ public class AuthController {
             return ResponseEntity.status(401).body("Incorrect email or password");
         }
 
-        // Load user and generate JWT
         final UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getEmail());
         final String token = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        // Get user role
+        String role = userDetails.getAuthorities().iterator().next().getAuthority().replace("ROLE_", "").toLowerCase();
+
+        // Return both token and role
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        response.put("role", role);
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/")
+    @GetMapping("/customer")
     public String home() {
         return "Welcome to MediBridge Auth!";
     }

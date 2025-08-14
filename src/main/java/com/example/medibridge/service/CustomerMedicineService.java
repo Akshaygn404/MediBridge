@@ -19,7 +19,9 @@ public class CustomerMedicineService {
 
     @Autowired
     private MedicineRepository medicineRepository;
+    @Autowired
     private StoreRepository storeRepository;
+
 
     public List<CustomerResponseDTO> getallmeds(){
         List<Medicine> medicineList=medicineRepository.findAll();
@@ -70,5 +72,22 @@ public class CustomerMedicineService {
 
         return responseList;
     }
+
+    public List<CustomerResponseDTO> getMedicinesByStore(int storeId) {
+        Store store=storeRepository.findById(storeId).orElse(null);
+        if(store==null) return new ArrayList<>();
+        List<CustomerResponseDTO> response=new ArrayList<>();
+        List<Medicine> storeList=store.getMedicines();
+        for(Medicine medicine:storeList){
+            CustomerResponseDTO customerResponseDTO=new CustomerResponseDTO();
+            customerResponseDTO.setId(medicine.getId());
+            customerResponseDTO.setDosageForm(medicine.getDosageForm());
+            customerResponseDTO.setGenericName(medicine.getGenericName());
+            customerResponseDTO.setBrandName(medicine.getBrandName());
+            response.add(customerResponseDTO);
+        }
+        return response;
+    }
+
 
 }

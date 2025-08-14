@@ -17,4 +17,7 @@ public interface MedicineRepository extends JpaRepository<Medicine,Integer> {
 
     @Query("SELECT m.alternates FROM Medicine m WHERE m.id = :id")
     List<Medicine> findAlternatesById(@Param("id") Integer id);
+
+    @Query("SELECT m FROM Medicine m JOIN m.stores s WHERE s.id = :storeId")
+    List<Medicine> findByStoreId(int storeId);
 }

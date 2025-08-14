@@ -59,9 +59,10 @@ public class MedicineService {
 
         if(store==null || currentOwner.getId()!=store.getOwner().getId()) return new ArrayList<>();
 
+        // Use repository to fetch medicines by storeId
+        List<Medicine> medicines = medicineRepository.findByStoreId(storeId);
 
-
-        return store.getMedicines().stream().map(med -> {
+        return medicines.stream().map(med -> {
             MedicineResponseDTO dto = new MedicineResponseDTO();
             dto.setId(med.getId());
             dto.setBrandName(med.getBrandName());

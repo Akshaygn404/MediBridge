@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,5 +36,7 @@ public class Medicine {
             inverseJoinColumns = @JoinColumn(name = "alternate_id")
     )
     private Set<Medicine> alternates = new HashSet<>();
+
+
 }
 

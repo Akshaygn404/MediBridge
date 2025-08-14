@@ -19,7 +19,7 @@ public class MedicineController {
 
     @GetMapping("/meds")
     @PreAuthorize("hasRole('OWNER')")
-    private List<MedicineResponseDTO> getAllMedicines(@PathVariable int storeId){
+    public List<MedicineResponseDTO> getAllMedicines(@PathVariable int storeId){
         return medicineService.getAllmeds(storeId);
     }
 
@@ -40,6 +40,8 @@ public class MedicineController {
     public String deleteMedicine(@PathVariable int storeId,@PathVariable int med_id){
         return (medicineService.deleteMeds(storeId,med_id))?"Successfully deleted":"Deletion failed";
     }
+
+
 
 
 

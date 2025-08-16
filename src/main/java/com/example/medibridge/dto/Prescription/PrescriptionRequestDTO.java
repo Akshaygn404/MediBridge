@@ -8,7 +8,7 @@ public class PrescriptionRequestDTO {
     String medName;
     String dosageForm;
     int quantity;
-    int morning;
-    int noon;
-    int night;
+    int morning=0;
+    int noon=0;
+    int night=0;
 }

@@ -3,6 +3,7 @@ package com.example.medibridge.service;
 import com.example.medibridge.model.Customer;
 import com.example.medibridge.model.Owner;
 import com.example.medibridge.model.User;
+import com.example.medibridge.repository.CustomerRepository;
 import com.example.medibridge.repository.OwnerRepository;
 import com.example.medibridge.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AuthService {
 
     @Autowired
     private OwnerRepository ownerRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
 
 
@@ -60,6 +64,12 @@ public class AuthService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return ownerRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Owner not found"));
+    }
+    public Customer getCurrentCustomer() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return customerRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Owner not found"));
     }
 

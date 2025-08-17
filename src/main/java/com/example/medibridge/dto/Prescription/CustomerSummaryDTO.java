@@ -1,17 +1,19 @@
 package com.example.medibridge.dto.Prescription;
 
+// CustomerSummaryDTO.java
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PrescriptionRequestDTO {
-    private String doctorName;
-    private String dateIssued;
-    private List<PrescriptionItemDTO> items;
+public class CustomerSummaryDTO {
+    private Integer id;
+    private String name;
+    private String email;
+    private String phone;
 }
 
